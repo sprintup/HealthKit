@@ -15,6 +15,8 @@
 		562A5B091C52CF6E0063A662 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 562A5B071C52CF6E0063A662 /* LaunchScreen.storyboard */; };
 		562A5B141C52CF6F0063A662 /* HealthKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 562A5B131C52CF6F0063A662 /* HealthKitTests.m */; };
 		562A5B1F1C52CF6F0063A662 /* HealthKitUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 562A5B1E1C52CF6F0063A662 /* HealthKitUITests.m */; };
+		562A5B301C52D4390063A662 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 562A5B2F1C52D4390063A662 /* HealthKit.framework */; };
+		562A5B371C53E9800063A662 /* HKHealthStore+HealthStore_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 562A5B361C53E9800063A662 /* HKHealthStore+HealthStore_Extensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,10 @@
 		562A5B1A1C52CF6F0063A662 /* HealthKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		562A5B1E1C52CF6F0063A662 /* HealthKitUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HealthKitUITests.m; sourceTree = "<group>"; };
 		562A5B201C52CF6F0063A662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		562A5B2F1C52D4390063A662 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		562A5B311C52D4390063A662 /* HealthKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HealthKit.entitlements; sourceTree = "<group>"; };
+		562A5B351C53E9800063A662 /* HKHealthStore+HealthStore_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HKHealthStore+HealthStore_Extensions.h"; path = "../HKHealthStore+HealthStore_Extensions.h"; sourceTree = "<group>"; };
+		562A5B361C53E9800063A662 /* HKHealthStore+HealthStore_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HKHealthStore+HealthStore_Extensions.m"; path = "../HKHealthStore+HealthStore_Extensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				562A5B301C52D4390063A662 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +88,7 @@
 		562A5AED1C52CF6E0063A662 = {
 			isa = PBXGroup;
 			children = (
+				562A5B2F1C52D4390063A662 /* HealthKit.framework */,
 				562A5AF81C52CF6E0063A662 /* HealthKit */,
 				562A5B121C52CF6F0063A662 /* HealthKitTests */,
 				562A5B1D1C52CF6F0063A662 /* HealthKitUITests */,
@@ -101,10 +109,13 @@
 		562A5AF81C52CF6E0063A662 /* HealthKit */ = {
 			isa = PBXGroup;
 			children = (
+				562A5B311C52D4390063A662 /* HealthKit.entitlements */,
 				562A5AFC1C52CF6E0063A662 /* AppDelegate.h */,
 				562A5AFD1C52CF6E0063A662 /* AppDelegate.m */,
 				562A5AFF1C52CF6E0063A662 /* ViewController.h */,
 				562A5B001C52CF6E0063A662 /* ViewController.m */,
+				562A5B351C53E9800063A662 /* HKHealthStore+HealthStore_Extensions.h */,
+				562A5B361C53E9800063A662 /* HKHealthStore+HealthStore_Extensions.m */,
 				562A5B021C52CF6E0063A662 /* Main.storyboard */,
 				562A5B051C52CF6E0063A662 /* Assets.xcassets */,
 				562A5B071C52CF6E0063A662 /* LaunchScreen.storyboard */,
@@ -208,6 +219,11 @@
 					562A5AF51C52CF6E0063A662 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = C6C3M952L5;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					562A5B0E1C52CF6F0063A662 = {
 						CreatedOnToolsVersion = 7.2;
@@ -273,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				562A5B371C53E9800063A662 /* HKHealthStore+HealthStore_Extensions.m in Sources */,
 				562A5B011C52CF6E0063A662 /* ViewController.m in Sources */,
 				562A5AFE1C52CF6E0063A662 /* AppDelegate.m in Sources */,
 				562A5AFB1C52CF6E0063A662 /* main.m in Sources */,
@@ -414,10 +431,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HealthKit/HealthKit.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HealthKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stephenprintup.HealthKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -425,10 +446,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HealthKit/HealthKit.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HealthKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stephenprintup.HealthKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -499,6 +524,7 @@
 				562A5B251C52CF6F0063A662 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		562A5B261C52CF6F0063A662 /* Build configuration list for PBXNativeTarget "HealthKitTests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +533,7 @@
 				562A5B281C52CF6F0063A662 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		562A5B291C52CF6F0063A662 /* Build configuration list for PBXNativeTarget "HealthKitUITests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +542,7 @@
 				562A5B2B1C52CF6F0063A662 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
