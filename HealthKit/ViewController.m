@@ -6,22 +6,43 @@
 //  Copyright © 2016 Stephen Printup. All rights reserved.
 //
 
+
+
 #import "ViewController.h"
 #import "HKHealthStore+HealthStore_Extensions.h"
 
 
+
+
+
+
+
+
+
 @interface ViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *labelAge;
-@property (weak, nonatomic) IBOutlet UILabel *labelHeight;
-@property (weak, nonatomic) IBOutlet UILabel *labelWeight;
 
+@property (weak, nonatomic) IBOutlet UILabel *labelAge;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *labelHeight;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *labelWeight;
+@property (weak, nonatomic) IBOutlet UITextField *textFieldHeight;
+@property (weak, nonatomic) IBOutlet UITextField *textFieldWeight;
 @end
+
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.healthStore = [[HKHealthStore alloc] init];
+    
+    
+    
+    
     if ([HKHealthStore isHealthDataAvailable]) {
         NSSet *writeDataTypes = [self dataTypesToWrite];
         NSSet *readDataTypes = [self dataTypesToRead];
@@ -36,25 +57,19 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 // Update the user interface based on the current user's health information.
                 [self updateUsersAgeLabel];
+                [self updateUsersHeightLabel];
+                [self updateUsersWeightLabel];
             });
         }];
     }
-}
-- (IBAction)buttonLoad:(id)sender {
-    [self updateUsersHeightLabel];
-    NSLog(@"loadButton pressed");
-
-}
-
-- (IBAction)buttonSave:(id)sender {
-    [self saveHeightIntoHealthStore:[self.textFieldHeight.text doubleValue]];
-    NSLog(@"saveButton pressed");
 }
 
 #pragma mark - HealthKit Permissions
 
 // Returns the types of data that Fit wishes to write to HealthKit.
 - (NSSet *)dataTypesToWrite {
+    
+    
     HKQuantityType *heightType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight];
     HKQuantityType *weightType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMass];
 
@@ -63,9 +78,11 @@
 
 // Returns the types of data that Fit wishes to read from HealthKit.
 - (NSSet *)dataTypesToRead {
-    HKCharacteristicType *birthdayType = [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierDateOfBirth];
+    
+    
     HKQuantityType *heightType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight];
     HKQuantityType *weightType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMass];
+    HKCharacteristicType *birthdayType = [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierDateOfBirth];
     HKCharacteristicType *biologicalSexType = [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierBiologicalSex];
 
     return [NSSet setWithObjects:birthdayType, heightType, weightType, biologicalSexType, nil];
@@ -106,7 +123,7 @@
     self.labelHeight.text = [NSString stringWithFormat:localizedHeightUnitDescriptionFormat, heightUnitString];
     
     HKQuantityType *heightType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight];
-    
+    NSLog(@"updateUsersHeightLabel");
     // Query to get the user's latest height, if it exists.
     [self.healthStore aapl_mostRecentQuantitySampleOfType:heightType predicate:nil completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
         if (!mostRecentQuantity) {
@@ -120,13 +137,17 @@
             // Determine the height in the required unit.
             HKUnit *heightUnit = [HKUnit inchUnit];
             double usersHeight = [mostRecentQuantity doubleValueForUnit:heightUnit];
-            
+            NSLog(@"usersHeight: %f",usersHeight);
             // Update the user interface.
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.labelHeight.text = [NSNumberFormatter localizedStringFromNumber:@(usersHeight) numberStyle:NSNumberFormatterNoStyle];
             });
         }
+        NSLog(@"neither if nor else");
     }];
+    NSLog(@"before testMethod");
+    [self.healthStore testMethod];
+    NSLog(@"end of updateUsersHeightLabel after test method");
 }
 
 - (void)updateUsersWeightLabel {
@@ -138,7 +159,7 @@
     NSString *weightUnitString = [massFormatter unitStringFromValue:10 unit:weightFormatterUnit];
     NSString *localizedWeightUnitDescriptionFormat = NSLocalizedString(@"Weight (%@)", nil);
     
-    self.labelWeight.text = [NSString stringWithFormat:localizedWeightUnitDescriptionFormat, weightUnitString];
+    self.labelAge.text = [NSString stringWithFormat:localizedWeightUnitDescriptionFormat, weightUnitString];
     
     // Query to get the user's latest weight, if it exists.
     HKQuantityType *weightType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMass];
@@ -203,5 +224,17 @@
     }];
 }
 
+#pragma mark - buttons
+
+- (IBAction)buttonLoad:(id)sender {
+    NSLog(@"loadButton pressed");
+    [self updateUsersHeightLabel];
+    
+}
+
+- (IBAction)buttonSave:(id)sender {
+    NSLog(@"saveButton pressed");
+    [self saveHeightIntoHealthStore:[self.textFieldHeight.text doubleValue]];
+}
 
 @end
