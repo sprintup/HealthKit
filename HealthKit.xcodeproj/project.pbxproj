@@ -16,7 +16,8 @@
 		562A5B141C52CF6F0063A662 /* HealthKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 562A5B131C52CF6F0063A662 /* HealthKitTests.m */; };
 		562A5B1F1C52CF6F0063A662 /* HealthKitUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 562A5B1E1C52CF6F0063A662 /* HealthKitUITests.m */; };
 		562A5B301C52D4390063A662 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 562A5B2F1C52D4390063A662 /* HealthKit.framework */; };
-		562A5B371C53E9800063A662 /* HKHealthStore+HealthStore_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 562A5B361C53E9800063A662 /* HKHealthStore+HealthStore_Extensions.m */; };
+		F30D5D3A1C5655F6001B1A92 /* HKHealthStore+HealthKitStore_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F30D5D391C5655F6001B1A92 /* HKHealthStore+HealthKitStore_Extensions.m */; };
+		F30D5D3E1C5656A8001B1A92 /* HealthKit.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = F30D5D3D1C5656A8001B1A92 /* HealthKit.entitlements */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,9 +55,9 @@
 		562A5B1E1C52CF6F0063A662 /* HealthKitUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HealthKitUITests.m; sourceTree = "<group>"; };
 		562A5B201C52CF6F0063A662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		562A5B2F1C52D4390063A662 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		562A5B311C52D4390063A662 /* HealthKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HealthKit.entitlements; sourceTree = "<group>"; };
-		562A5B351C53E9800063A662 /* HKHealthStore+HealthStore_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HKHealthStore+HealthStore_Extensions.h"; path = "../HKHealthStore+HealthStore_Extensions.h"; sourceTree = "<group>"; };
-		562A5B361C53E9800063A662 /* HKHealthStore+HealthStore_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HKHealthStore+HealthStore_Extensions.m"; path = "../HKHealthStore+HealthStore_Extensions.m"; sourceTree = "<group>"; };
+		F30D5D381C5655F6001B1A92 /* HKHealthStore+HealthKitStore_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HKHealthStore+HealthKitStore_Extensions.h"; sourceTree = "<group>"; };
+		F30D5D391C5655F6001B1A92 /* HKHealthStore+HealthKitStore_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HKHealthStore+HealthKitStore_Extensions.m"; sourceTree = "<group>"; };
+		F30D5D3D1C5656A8001B1A92 /* HealthKit.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = HealthKit.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,11 +110,11 @@
 		562A5AF81C52CF6E0063A662 /* HealthKit */ = {
 			isa = PBXGroup;
 			children = (
-				562A5B311C52D4390063A662 /* HealthKit.entitlements */,
+				F30D5D3D1C5656A8001B1A92 /* HealthKit.entitlements */,
 				562A5AFC1C52CF6E0063A662 /* AppDelegate.h */,
 				562A5AFD1C52CF6E0063A662 /* AppDelegate.m */,
-				562A5B351C53E9800063A662 /* HKHealthStore+HealthStore_Extensions.h */,
-				562A5B361C53E9800063A662 /* HKHealthStore+HealthStore_Extensions.m */,
+				F30D5D381C5655F6001B1A92 /* HKHealthStore+HealthKitStore_Extensions.h */,
+				F30D5D391C5655F6001B1A92 /* HKHealthStore+HealthKitStore_Extensions.m */,
 				562A5AFF1C52CF6E0063A662 /* ViewController.h */,
 				562A5B001C52CF6E0063A662 /* ViewController.m */,
 				562A5B021C52CF6E0063A662 /* Main.storyboard */,
@@ -264,6 +265,7 @@
 			files = (
 				562A5B091C52CF6E0063A662 /* LaunchScreen.storyboard in Resources */,
 				562A5B061C52CF6E0063A662 /* Assets.xcassets in Resources */,
+				F30D5D3E1C5656A8001B1A92 /* HealthKit.entitlements in Resources */,
 				562A5B041C52CF6E0063A662 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,7 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				562A5B371C53E9800063A662 /* HKHealthStore+HealthStore_Extensions.m in Sources */,
+				F30D5D3A1C5655F6001B1A92 /* HKHealthStore+HealthKitStore_Extensions.m in Sources */,
 				562A5B011C52CF6E0063A662 /* ViewController.m in Sources */,
 				562A5AFE1C52CF6E0063A662 /* AppDelegate.m in Sources */,
 				562A5AFB1C52CF6E0063A662 /* main.m in Sources */,

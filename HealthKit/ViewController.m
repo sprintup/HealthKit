@@ -9,7 +9,7 @@
 
 
 #import "ViewController.h"
-#import "HKHealthStore+HealthStore_Extensions.h"
+#import "HKHealthStore+HealthKitStore_Extensions.h"
 
 
 
@@ -145,9 +145,6 @@
         }
         NSLog(@"neither if nor else");
     }];
-    NSLog(@"before testMethod");
-    [self.healthStore testMethod];
-    NSLog(@"end of updateUsersHeightLabel after test method");
 }
 
 - (void)updateUsersWeightLabel {
